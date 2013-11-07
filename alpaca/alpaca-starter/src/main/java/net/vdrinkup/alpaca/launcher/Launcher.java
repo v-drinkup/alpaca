@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import net.vdrinkup.alpaca.Env;
+
 /**
  *
  * <p></p>
@@ -139,7 +141,7 @@ public class Launcher {
 			if ( name.endsWith( ".class" )  ) {
 				name = entry.getName().replaceAll( "/", "." ).substring( 
 						0, entry.getName().lastIndexOf( "." ) );
-				if ( name.equals( "com.jd.wms.standalone.StandAloneMain" ) ) {
+				if ( name.equals( Env.getInstance().getPropertyValue( Env.SpecificKeys.MAIN_CLASS ) ) ) {
 					this.classLoader = new URLClassLoader( new URL[] { file.toURI().toURL() }, 
 							ClassLoader.getSystemClassLoader() );
 					this.mainClazz = this.classLoader.loadClass( name );

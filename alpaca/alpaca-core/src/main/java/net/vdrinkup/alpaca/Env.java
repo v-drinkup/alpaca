@@ -111,4 +111,18 @@ public class Env {
 		return logPath;
 	}
 	
+	public String getPropertyValue( String key ) {
+		String value = properties.getProperty( key );
+		return value == null ? "" : value;
+	}
+	
+	public class SpecificKeys {
+		
+		private SpecificKeys() {
+		}
+		
+		public static final String MAIN_CLASS = "MAIN_CLASS";
+		
+	}
+	
 }
