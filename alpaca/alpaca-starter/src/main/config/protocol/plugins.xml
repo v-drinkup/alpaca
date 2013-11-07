@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins xmlns="http://protocol.servicebus.wms.jd.com/plugins">
+	<plugin protocol="ws">
+		<config-processor>com.jd.wms.servicebus.protocol.spi.ws.WsConfigProcessor</config-processor>
+		<connection-server>com.jd.wms.servicebus.protocol.spi.ws.WsServerConnector</connection-server>
+		<connection-client>com.jd.wms.servicebus.protocol.spi.ws.WsClientConnector</connection-client>
+	</plugin>
+</plugins>

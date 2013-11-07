@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+<channel>
+	<id>ws</id>
+	<serviceName>ws1</serviceName>
+</channel>
+<channel>
+	<id>tcp</id>
+	<serviceName>tcp1</serviceName>
+</channel>
+</channels>
+</xml>

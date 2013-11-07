@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol.ws xmlns="http://servicebus.wms.jd.com/protocol" mode="s" side="server" ioDirection="i/o" autoRun="true">
+	<request uri="http://0.0.0.0:8080/testcxf/hello" realization="cxf" resource="com.jd.wms.servicebus.protocol.HelloWorldImpl"/>
+</protocol.ws>

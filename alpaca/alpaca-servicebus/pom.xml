@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>alpaca</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<groupId>net.vdrinkup.alpaca</groupId>
+	</parent>
+	<artifactId>alpaca-servicebus</artifactId>
+	<packaging>pom</packaging>
+	<name>alpaca-servicebus</name>
+	<description>The servicebus of wms platform</description>
+	<modules>
+		<module>alpaca-servicebus-core</module>
+		<module>alpaca-servicebus-protocol</module>
+		<module>alpaca-servicebus-channel</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.vdrinkup.alpaca</groupId>
+			<artifactId>alpaca-core</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>
