@@ -14,4 +14,16 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.tuscany.sdo</groupId>
+			<artifactId>tuscany-sdo-lib</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tuscany.sdo</groupId>
+			<artifactId>tuscany-sdo-impl</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	</dependencies>
 </project>

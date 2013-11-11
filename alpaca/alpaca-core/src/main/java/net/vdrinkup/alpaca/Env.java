@@ -123,6 +123,16 @@ public class Env {
 		
 		public static final String MAIN_CLASS = "MAIN_CLASS";
 		
+		public static final String NODE = "NODE";
+		
+	}
+
+	/**
+	 * @param node
+	 * @return
+	 */
+	public Object getProperty( String key ) {
+		return properties.get( key );
 	}
 	
 }

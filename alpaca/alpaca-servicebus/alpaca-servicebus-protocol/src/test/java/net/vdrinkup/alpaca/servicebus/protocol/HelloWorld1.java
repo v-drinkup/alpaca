@@ -19,7 +19,7 @@ import javax.jws.WebService;
 @WebService
 public interface HelloWorld1 {
 	@WebMethod( operationName="sayHello" )
-	@WebResult( name = "return", targetNamespace="http://protocol.servicebus.wms.jd.com/" )
+	@WebResult( name = "return", targetNamespace="http://protocol.servicebus.alpaca.vdrinkup.net/" )
 	public String sayHello();
 
 }

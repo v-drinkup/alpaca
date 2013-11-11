@@ -1,2 +1,2 @@
-@javax.xml.bind.annotation.XmlSchema( namespace = "http://servicebus.wms.jd.com/protocol", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED )
+@javax.xml.bind.annotation.XmlSchema( namespace = "http://servicebus.alpaca.vdrinkup.net/protocol", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED )
 package net.vdrinkup.alpaca.servicebus.protocol.config;
