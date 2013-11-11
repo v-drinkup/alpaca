@@ -14,7 +14,6 @@
 		<module>alpaca-container</module>
 		<module>alpaca-starter</module>
 		<module>alpaca-spring</module>
-		<!-- <module>business-wms3-wave</module> -->
 		<module>alpaca-ssdo</module>
     <module>alpaca-sdo</module>
   </modules>
