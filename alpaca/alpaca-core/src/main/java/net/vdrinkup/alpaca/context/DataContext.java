@@ -24,17 +24,18 @@ public interface DataContext extends Serializable {
 	 * @return
 	 */
 	public String getId();
-
-	/**
-	 * 获取是否无效状态
-	 * @return
-	 */
-	public boolean isInvalid();
 	
 	/**
-	 * 设置上下文为无效状态
+	 * 获得上下文状态
+	 * @return 当前上下文的状态{@link ContextStatus}
 	 */
-	public void setInvalid( boolean invalid );
+	public ContextStatus getStatus();
+	
+	/**
+	 * 设置上下文状态
+	 * @param status 当前上下文状态
+	 */
+	public void setStatus( ContextStatus status );
 	
 	/**
 	 * 当前获取Context全部属性

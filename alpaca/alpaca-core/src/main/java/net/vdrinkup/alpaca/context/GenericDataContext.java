@@ -12,9 +12,7 @@ import java.util.Map;
 
 /**
  *	通用数据上下文实现类
- * <p>
- * 实现<CODE>DataContext</CODE>接口
- * </p>
+ * <p></p>
  * @author liubing
  * Date Oct 24, 2013
  */
@@ -24,11 +22,14 @@ public class GenericDataContext implements DataContext {
 	
 	protected Map< String, Object > attributes = new HashMap< String, Object >( 16 );
 	
-	protected boolean isInvalid = false;
-	
 	protected Object payload;
 
 	protected Exception exception;
+	
+	/**
+	 * default:{@link ContextStatus.VALID}
+	 */
+	protected ContextStatus status = ContextStatus.VALID;
 	
 	/* (non-Javadoc)
 	 * @see com.jd.wms.container.DataContext#getAttributes()
@@ -53,14 +54,6 @@ public class GenericDataContext implements DataContext {
 	@Override
 	public < T > void setPayload( T t ) {
 		this.payload = t;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.jd.wms.container.DataContext#isInvalid()
-	 */
-	@Override
-	public boolean isInvalid() {
-		return isInvalid;
 	}
 
 	/* (non-Javadoc)
@@ -95,14 +88,6 @@ public class GenericDataContext implements DataContext {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jd.wms.container.DataContext#setInvalid(boolean)
-	 */
-	@Override
-	public void setInvalid( boolean invalid ) {
-		this.isInvalid = invalid;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.jd.wms.container.DataContext#setException(java.lang.Exception)
 	 */
 	@Override
@@ -116,6 +101,24 @@ public class GenericDataContext implements DataContext {
 	@Override
 	public Exception getException() {
 		return exception;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getStatus()
+	 */
+	@Override
+	public ContextStatus getStatus() {
+		return this.status;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#setStatus(net.vdrinkup.alpaca.context.ContextStatus)
+	 */
+	@Override
+	public void setStatus( ContextStatus status ) {
+		this.status = status;
 	}
 
 }

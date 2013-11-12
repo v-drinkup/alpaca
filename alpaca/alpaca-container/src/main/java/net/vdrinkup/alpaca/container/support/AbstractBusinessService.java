@@ -1,10 +1,11 @@
 package net.vdrinkup.alpaca.container.support;
 
-import net.vdrinkup.alpaca.container.BusinessException;
-import net.vdrinkup.alpaca.container.BusinessService;
 import net.vdrinkup.alpaca.container.ErrorHandler;
 import net.vdrinkup.alpaca.container.Handler;
+import net.vdrinkup.alpaca.context.ContextStatus;
 import net.vdrinkup.alpaca.context.DataContext;
+import net.vdrinkup.alpaca.service.BusinessException;
+import net.vdrinkup.alpaca.service.BusinessService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 抽象业务模板类
  * <p>
- * 继承<CODE>BusinessService</CODE>接口
+ * 继承{@link BusinessService}接口
  * </p>
  * @author liubing
  * Date Oct 24, 2013
@@ -45,20 +46,21 @@ public abstract class AbstractBusinessService implements BusinessService {
 	 */
 	@Override
 	public void doService( DataContext context ) throws BusinessException {
-		if ( context.isInvalid() ) {
+		if ( ContextStatus.INVALID.equals( context.getStatus() ) ) {
 			getLogger().warn( "****************Current context is invalid.******************" );
 			return ;
 		}
 		try {
-			process( context ); 
+			invoke( context );
 		} catch ( Exception e ) {
 			getLogger().error( e.getMessage(), e ) ;
+			context.setStatus( ContextStatus.EXCEPTION );
 			context.setException( e );
 			throw new BusinessException( context );
 		}
 	}
 	
-	public abstract void process( DataContext context ) throws Exception;
+	public abstract void invoke( DataContext context ) throws Exception;
 	
 	/************************setter/getter***************************/
 

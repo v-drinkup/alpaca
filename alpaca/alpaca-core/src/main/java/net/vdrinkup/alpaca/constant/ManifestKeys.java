@@ -17,10 +17,10 @@ public class ManifestKeys {
 	private ManifestKeys(){
 	}
 	
-	public static final String COMPONENT_NAME = "WMS-Component-Name";
+	public static final String COMPONENT_NAME = "Alpaca-Component-Name";
 	
-	public static final String COMPONENT_VERSION = "WMS-Component-Version";
+	public static final String COMPONENT_VERSION = "Alpaca-Component-Version";
 	
-	public static final String COMPONENT_ACTIVATOR = "WMS-Component-Activator";
+	public static final String COMPONENT_ACTIVATOR = "Alpaca-Component-Activator";
 
 }

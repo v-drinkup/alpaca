@@ -9,11 +9,10 @@ package net.vdrinkup.alpaca.sdo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import commonj.sdo.helper.XSDHelper;
 
 import net.vdrinkup.alpaca.Env;
+
+import commonj.sdo.helper.XSDHelper;
 
 /**
  *
