@@ -7,11 +7,11 @@
 package net.vdrinkup.alpaca.component;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.jar.JarFile;
-
-import edu.emory.mathcs.backport.java.util.Collections;
+import java.util.logging.Logger;
 
 import net.vdrinkup.alpaca.constant.ManifestKeys;
 import net.vdrinkup.alpaca.resource.ResourceFilter;
@@ -25,8 +25,9 @@ import net.vdrinkup.alpaca.resource.ResourceFilter;
  */
 public class ComponentResourceFilter implements ResourceFilter {
 	
-	@SuppressWarnings( "unchecked" )
 	private static List< ResourceFilter > extraFilters = Collections.synchronizedList( new LinkedList< ResourceFilter >() );
+	
+	private Logger LOG = Logger.getLogger( ComponentResourceFilter.class.getName() );
 	
 	/*
 	 * (non-Javadoc)
@@ -43,6 +44,7 @@ public class ComponentResourceFilter implements ResourceFilter {
 		if ( componentName == null || "".equals( componentName ) ) {
 			return ( R ) Boolean.FALSE;
 		}
+		LOG.config( "Current component's name is [" + componentName + "]" );
 		final Component component = new Component( componentName, 
 				jar.getManifest().getMainAttributes().getValue( ManifestKeys.COMPONENT_VERSION ) );
 		component.setFilePath( ( ( File ) t ).getAbsolutePath() );
@@ -57,6 +59,7 @@ public class ComponentResourceFilter implements ResourceFilter {
 		}
 		component.setPriority( priority );
 		ComponentManager.getInstance().register( component.getId(), component );
+		LOG.config( "Component [" + componentName + "] has been registered." );
 		for ( ResourceFilter filter : extraFilters ) {
 			filter.doFilter( component );
 		}

@@ -4,7 +4,7 @@
  * Contributors:
  *     JD Corporation 
  *******************************************************************************/
-package net.vdrinkup.alpaca.log;
+package com.vdrinkup.alpaca.support.log;
 
 import java.io.File;
 import java.io.FileInputStream;

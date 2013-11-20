@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
+import net.vdrinkup.alpaca.log.LogMBean;
 import net.vdrinkup.alpaca.service.ServiceManager;
 
 /**
@@ -162,5 +163,7 @@ public abstract class HelperProvider {
 	}
 	
 	public abstract ServiceManager serviceManager();
+	
+	public abstract LogMBean logMBean();
 
 }

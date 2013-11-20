@@ -10,7 +10,6 @@
 		<module>alpaca-core</module>
 		<module>alpaca-memqueue</module>
 		<module>alpaca-servicebus</module>
-		<module>alpaca-log</module>
 		<module>alpaca-container</module>
 		<module>alpaca-sdo</module>
     	<module>alpaca-generic</module>

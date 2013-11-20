@@ -14,14 +14,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>net.vdrinkup.alpaca</groupId>
-			<artifactId>alpaca-core</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 	
 	<build>
 		<finalName>${project.parent.name}-${project.version}</finalName>

@@ -7,11 +7,10 @@
 package net.vdrinkup.alpaca.component;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
-
-import edu.emory.mathcs.backport.java.util.Collections;
 
 /**
  *
@@ -37,7 +36,6 @@ public class ComponentManager {
 		return _instance;
 	}
 	
-	@SuppressWarnings( "unchecked" )
 	private Map< String, Component > registry = Collections.synchronizedSortedMap( new TreeMap< String, Component >() );
 
 	public void register( String key, Component component ) {

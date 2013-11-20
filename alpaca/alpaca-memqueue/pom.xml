@@ -34,9 +34,9 @@
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
 						<manifestEntries>
-							<WMS-Component-Name>alpaca-memqueue</WMS-Component-Name>
-							<WMS-Component-Version>0.1.0</WMS-Component-Version>
-							<WMS-Component-Activator>net.vdrinkup.alpaca.memqueue.Activator</WMS-Component-Activator>
+							<Alpaca-Component-Name>alpaca-memqueue</Alpaca-Component-Name>
+							<Alpaca-Component-Version>0.1.0</Alpaca-Component-Version>
+							<Alpaca-Component-Activator>net.vdrinkup.alpaca.memqueue.Activator</Alpaca-Component-Activator>
 						</manifestEntries>
 					</archive>
 				</configuration>

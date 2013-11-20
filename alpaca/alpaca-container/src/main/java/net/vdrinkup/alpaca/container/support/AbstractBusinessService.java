@@ -4,8 +4,10 @@ import net.vdrinkup.alpaca.container.ErrorHandler;
 import net.vdrinkup.alpaca.container.Handler;
 import net.vdrinkup.alpaca.context.ContextStatus;
 import net.vdrinkup.alpaca.context.DataContext;
+import net.vdrinkup.alpaca.service.AtomicService;
 import net.vdrinkup.alpaca.service.BusinessException;
 import net.vdrinkup.alpaca.service.BusinessService;
+import net.vdrinkup.alpaca.service.InvokeException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * @author liubing
  * Date Oct 24, 2013
  */
-public abstract class AbstractBusinessService implements BusinessService {
+public abstract class AbstractBusinessService implements AtomicService {
 	
 	protected static Logger LOG = LoggerFactory.getLogger( AbstractBusinessService.class );
 		
@@ -41,11 +43,11 @@ public abstract class AbstractBusinessService implements BusinessService {
 		this.errorHandler = errorHandler;
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.jd.wms.container.BusinessService#process(com.jd.wms.container.DataContext)
+	/*
+	 * (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.service.Service#invoke(net.vdrinkup.alpaca.context.DataContext)
 	 */
-	@Override
-	public void invoke( DataContext context ) throws BusinessException {
+	public void invoke( DataContext context ) throws InvokeException {
 		if ( ContextStatus.INVALID.equals( context.getStatus() ) ) {
 			getLogger().warn( "****************Current context is invalid.******************" );
 			return ;
@@ -56,7 +58,6 @@ public abstract class AbstractBusinessService implements BusinessService {
 			getLogger().error( e.getMessage(), e ) ;
 			context.setStatus( ContextStatus.EXCEPTION );
 			context.setException( e );
-			throw new BusinessException( context );
 		}
 	}
 	

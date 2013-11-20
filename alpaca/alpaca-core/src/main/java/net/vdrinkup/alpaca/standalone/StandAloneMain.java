@@ -56,6 +56,7 @@ public class StandAloneMain {
 			url = urls[ i ];
 			file = new File( url.toURI() );
 			if ( ! ( ( Boolean ) crf.doFilter( file ) ) ) {
+				System.out.println( ">Add [" + url.getFile() + "] to commons libs." );
 				commonUrls.add( url );
 			}
 		}

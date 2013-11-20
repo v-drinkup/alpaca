@@ -6,9 +6,11 @@
  *******************************************************************************/
 package com.vdrinkup.alpaca.support;
 
+import com.vdrinkup.alpaca.support.log.Log4jMBean;
 import com.vdrinkup.alpaca.support.service.DefaultServiceManager;
 
 import net.vdrinkup.alpaca.HelperProvider;
+import net.vdrinkup.alpaca.log.LogMBean;
 import net.vdrinkup.alpaca.service.ServiceManager;
 
 /**
@@ -21,8 +23,11 @@ public class DefaultHelperProvider extends HelperProvider {
 	
 	protected ServiceManager serviceManager;
 	
+	protected LogMBean logMBean;
+	
 	public DefaultHelperProvider() {
 		serviceManager = new DefaultServiceManager();
+		logMBean = new Log4jMBean();
 	}
 
 	/* (non-Javadoc)
@@ -33,6 +38,8 @@ public class DefaultHelperProvider extends HelperProvider {
 		return serviceManager;
 	}
 	
-	
+	public LogMBean logMBean() {
+		return logMBean;
+	}
 
 }

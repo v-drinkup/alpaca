@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 import net.vdrinkup.alpaca.component.Component;
 import net.vdrinkup.alpaca.component.ComponentManager;
@@ -24,6 +25,8 @@ import net.vdrinkup.alpaca.component.ComponentManager;
  * Date Oct 28, 2013
  */
 public class MainRunnable implements Runnable {
+	
+	private static Logger LOG = Logger.getLogger( MainRunnable.class.getName() );
 	
 	private ClassLoader parent;
 	
@@ -39,10 +42,10 @@ public class MainRunnable implements Runnable {
 	 */
 	@Override
 	public void run() {
-		System.out.println( "------------------------>The platform is starting..." );
+		LOG.config( ">The platform is starting..." );
 		final long beginTime = System.currentTimeMillis();
 		final Collection< Component > components = ComponentManager.getInstance().getAll();
-		System.out.println( "------------------------>Current component count is " + components.size() );
+		LOG.config( ">Current component count is " + components.size() );
 		Iterator< Component > iter = components.iterator();
 		final URL[] cUrls = new URL[ components.size() ];
 		int i = 0;
@@ -67,7 +70,7 @@ public class MainRunnable implements Runnable {
 			e.printStackTrace();
 		}
 		final long endTime= System.currentTimeMillis();
-		System.out.println( "------------------------>The platform has been started. use time [" + ( endTime - beginTime ) + "ms]" );
+		LOG.config( ">The platform has been started. use time [" + ( endTime - beginTime ) + "ms]" );
 	}
 
 }

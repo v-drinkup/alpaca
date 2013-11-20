@@ -23,9 +23,9 @@ interface Service {
 	/**
 	 * 执行服务
 	 * @param context
-	 * @throws T
+	 * @throws InvokeException
 	 */
-	public < T extends InvokeException > void invoke( DataContext context ) throws T;
+	public void invoke( DataContext context ) throws InvokeException;
 	/**
 	 * 启动服务
 	 * @return
