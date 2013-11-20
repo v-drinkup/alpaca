@@ -54,7 +54,6 @@ public class StandAloneMain {
 		URL url = null;
 		for ( int i = 0; i < urls.length; i++ ) {
 			url = urls[ i ];
-			System.out.println( url.toString() );
 			file = new File( url.toURI() );
 			if ( ! ( ( Boolean ) crf.doFilter( file ) ) ) {
 				commonUrls.add( url );

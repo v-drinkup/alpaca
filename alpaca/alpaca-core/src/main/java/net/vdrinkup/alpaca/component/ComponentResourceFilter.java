@@ -7,7 +7,11 @@
 package net.vdrinkup.alpaca.component;
 
 import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.jar.JarFile;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 import net.vdrinkup.alpaca.constant.ManifestKeys;
 import net.vdrinkup.alpaca.resource.ResourceFilter;
@@ -20,6 +24,9 @@ import net.vdrinkup.alpaca.resource.ResourceFilter;
  * Date Oct 28, 2013
  */
 public class ComponentResourceFilter implements ResourceFilter {
+	
+	@SuppressWarnings( "unchecked" )
+	private static List< ResourceFilter > extraFilters = Collections.synchronizedList( new LinkedList< ResourceFilter >() );
 	
 	/*
 	 * (non-Javadoc)
@@ -43,8 +50,21 @@ public class ComponentResourceFilter implements ResourceFilter {
 		if ( activatorClass != null && ! "".equals( activatorClass ) ) {
 			component.setActivatorClass( activatorClass );
 		}
+		final String componentPriority = jar.getManifest().getMainAttributes().getValue( ManifestKeys.COMPONENT_PRIORITY );
+		int priority = 3;
+		if ( componentPriority != null && ! "".equals( componentPriority ) ) {
+			priority = Integer.parseInt( componentPriority, 10 );
+		}
+		component.setPriority( priority );
 		ComponentManager.getInstance().register( component.getId(), component );
+		for ( ResourceFilter filter : extraFilters ) {
+			filter.doFilter( component );
+		}
 		return ( R ) Boolean.TRUE;
+	}
+	
+	public static void addExtraFilter( ResourceFilter filter ) {
+		extraFilters.add( filter );
 	}
 
 }

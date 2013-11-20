@@ -12,10 +12,9 @@
 		<module>alpaca-servicebus</module>
 		<module>alpaca-log</module>
 		<module>alpaca-container</module>
-		<module>alpaca-starter</module>
-		<module>alpaca-spring</module>
-		<module>alpaca-ssdo</module>
-    <module>alpaca-sdo</module>
+		<module>alpaca-sdo</module>
+    	<module>alpaca-generic</module>
+    	<module>alpaca-starter</module>
   </modules>
 
 	<!-- Define Generic Dependency -->

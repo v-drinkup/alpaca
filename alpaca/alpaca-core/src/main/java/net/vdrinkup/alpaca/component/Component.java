@@ -13,13 +13,13 @@ package net.vdrinkup.alpaca.component;
  * @author liubing
  * Date Oct 28, 2013
  */
-public class Component {
+public class Component implements Comparable< Integer > {
 	
 	private String name;
 	
 	private String version;
 	
-	private int level;
+	private int priority;
 	
 	private ClassLoader classLoader;
 	
@@ -65,18 +65,12 @@ public class Component {
 		this.version = version;
 	}
 
-	/**
-	 * @return the level
-	 */
-	public int getLevel() {
-		return level;
+	public int getPriority() {
+		return priority;
 	}
 
-	/**
-	 * @param level the level to set
-	 */
-	public void setLevel( int level ) {
-		this.level = level;
+	public void setPriority( int priority ) {
+		this.priority = priority;
 	}
 
 	/**
@@ -131,8 +125,17 @@ public class Component {
 	public GenericActivator getActivator() throws Exception {
 		if ( this.activatorClass != null ) {
 			this.activator = ( GenericActivator ) Class.forName( this.activatorClass, true, this.classLoader ).newInstance();
+			this.activator.setCurrentComponent( this );
 		}
 		return this.activator;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo( Integer priority ) {
+		return priority - this.priority;
 	}
 
 }

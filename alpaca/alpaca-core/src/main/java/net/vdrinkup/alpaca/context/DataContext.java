@@ -7,6 +7,7 @@
 package net.vdrinkup.alpaca.context;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -80,4 +81,38 @@ public interface DataContext extends Serializable {
 	 * 获得异常
 	 */
 	public Exception getException();
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getAttributeAsString( String key );
+	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Integer getAttributeAsInt( String key );
+	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Long getAttributeAsLong( String key );
+	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Double getAttributeAsDouble( String key );
+	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public BigDecimal getAttributeAsBigDecimal( String key );
 }

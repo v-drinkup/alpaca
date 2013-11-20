@@ -45,7 +45,7 @@ public abstract class AbstractBusinessService implements BusinessService {
 	 * @see com.jd.wms.container.BusinessService#process(com.jd.wms.container.DataContext)
 	 */
 	@Override
-	public void doService( DataContext context ) throws BusinessException {
+	public void invoke( DataContext context ) throws BusinessException {
 		if ( ContextStatus.INVALID.equals( context.getStatus() ) ) {
 			getLogger().warn( "****************Current context is invalid.******************" );
 			return ;
@@ -60,7 +60,7 @@ public abstract class AbstractBusinessService implements BusinessService {
 		}
 	}
 	
-	public abstract void invoke( DataContext context ) throws Exception;
+	public abstract void doService( DataContext context ) throws Exception;
 	
 	/************************setter/getter***************************/
 

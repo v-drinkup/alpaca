@@ -39,9 +39,10 @@
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
 						<manifestEntries>
-							<WMS-Component-Name>alpaca-log</WMS-Component-Name>
-							<WMS-Component-Version>0.1.0</WMS-Component-Version>
-							<WMS-Component-Activator>net.vdrinkup.alpaca.log.Activator</WMS-Component-Activator>
+							<Alpaca-Component-Name>alpaca-log</Alpaca-Component-Name>
+							<Alpaca-Component-Version>0.1.0</Alpaca-Component-Version>
+							<Alpaca-Component-Activator>net.vdrinkup.alpaca.log.Activator</Alpaca-Component-Activator>
+							<Alpaca-Component-Priority>0</Alpaca-Component-Priority>
 						</manifestEntries>
 					</archive>
 				</configuration>

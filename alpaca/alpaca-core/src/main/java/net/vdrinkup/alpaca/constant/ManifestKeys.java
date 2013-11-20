@@ -22,5 +22,7 @@ public class ManifestKeys {
 	public static final String COMPONENT_VERSION = "Alpaca-Component-Version";
 	
 	public static final String COMPONENT_ACTIVATOR = "Alpaca-Component-Activator";
+	
+	public static final String COMPONENT_PRIORITY = "Alpaca-Component-Priority";
 
 }

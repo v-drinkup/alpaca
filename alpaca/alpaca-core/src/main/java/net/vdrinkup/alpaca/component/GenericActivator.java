@@ -18,6 +18,8 @@ public abstract class GenericActivator {
 	
 	protected AtomicBoolean running = new AtomicBoolean( false );
 	
+	protected Component currentComponent;
+	
 	public void doStart() throws Exception {
 		if ( running.get() ) {
 			return ;
@@ -34,6 +36,14 @@ public abstract class GenericActivator {
 		running.set( false );
 	}
 	
+	public Component getCurrentComponent() {
+		return currentComponent;
+	}
+
+	protected void setCurrentComponent( Component currentComponent ) {
+		this.currentComponent = currentComponent;
+	}
+
 	protected abstract void start() throws Exception;
 	
 	protected abstract void stop() throws Exception;

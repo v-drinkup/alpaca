@@ -1,0 +1,2 @@
+@javax.xml.bind.annotation.XmlSchema( namespace = "http://service.alpaca.vdrinkup.net/definition", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED )
+package net.vdrinkup.alpaca.service.definition;

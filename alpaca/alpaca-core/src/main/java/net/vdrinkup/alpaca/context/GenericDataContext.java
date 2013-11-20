@@ -6,6 +6,7 @@
  *******************************************************************************/
 package net.vdrinkup.alpaca.context;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,6 +120,51 @@ public class GenericDataContext implements DataContext {
 	@Override
 	public void setStatus( ContextStatus status ) {
 		this.status = status;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getAttributeAsString(java.lang.String)
+	 */
+	@Override
+	public String getAttributeAsString( String key ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getAttributeAsInt(java.lang.String)
+	 */
+	@Override
+	public Integer getAttributeAsInt( String key ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getAttributeAsLong(java.lang.String)
+	 */
+	@Override
+	public Long getAttributeAsLong( String key ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getAttributeAsDouble(java.lang.String)
+	 */
+	@Override
+	public Double getAttributeAsDouble( String key ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.vdrinkup.alpaca.context.DataContext#getAttributeAsBigDecimal(java.lang.String)
+	 */
+	@Override
+	public BigDecimal getAttributeAsBigDecimal( String key ) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

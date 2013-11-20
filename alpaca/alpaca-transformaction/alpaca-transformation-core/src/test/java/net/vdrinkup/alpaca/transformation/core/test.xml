@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation xmlns="http://transformation.alpaca.vdrinkup.net/config">
+	select * from test_table where<element srcDef="aaaa" targetDef="bbbb"/>
+	<a>aaaaaaaa</a>
+</transformation>

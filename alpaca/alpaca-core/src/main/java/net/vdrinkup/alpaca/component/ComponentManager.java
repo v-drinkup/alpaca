@@ -9,7 +9,9 @@ package net.vdrinkup.alpaca.component;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.TreeMap;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 /**
  *
@@ -35,7 +37,8 @@ public class ComponentManager {
 		return _instance;
 	}
 	
-	private Map< String, Component > registry = new ConcurrentHashMap< String, Component >( 16 );
+	@SuppressWarnings( "unchecked" )
+	private Map< String, Component > registry = Collections.synchronizedSortedMap( new TreeMap< String, Component >() );
 
 	public void register( String key, Component component ) {
 		if ( key == null ) {
