@@ -8,8 +8,8 @@
 		<version>0.1.0-SNAPSHOT</version>
 		<groupId>net.vdrinkup.alpaca</groupId>
 	</parent>
-	<artifactId>alpaca-starter</artifactId>
-	<name>alpaca-starter</name>
+	<artifactId>alpaca-lanucher</artifactId>
+	<name>alpaca-lanucher</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

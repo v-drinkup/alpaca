@@ -12,7 +12,9 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.vdrinkup.alpaca.component.Component;
 import net.vdrinkup.alpaca.component.ComponentManager;
@@ -26,8 +28,8 @@ import net.vdrinkup.alpaca.component.ComponentManager;
  */
 public class MainRunnable implements Runnable {
 	
-	private static Logger LOG = Logger.getLogger( MainRunnable.class.getName() );
-	
+	private Logger LOG = LoggerFactory.getLogger( MainRunnable.class );
+		
 	private ClassLoader parent;
 	
 	/**
@@ -42,18 +44,25 @@ public class MainRunnable implements Runnable {
 	 */
 	@Override
 	public void run() {
-		LOG.config( ">The platform is starting..." );
+		Thread.currentThread().setContextClassLoader( parent );
+		if ( LOG.isDebugEnabled() ) {
+			LOG.debug( "The platform is starting..." );
+		}
 		final long beginTime = System.currentTimeMillis();
 		final Collection< Component > components = ComponentManager.getInstance().getAll();
-		LOG.config( ">Current component count is " + components.size() );
+		if ( LOG.isDebugEnabled() ) {
+			LOG.debug( ">Current component count is " + components.size() );
+		}
 		Iterator< Component > iter = components.iterator();
 		final URL[] cUrls = new URL[ components.size() ];
 		int i = 0;
+		URL url = null;
 		while ( iter.hasNext() ) {
 			try {
-				cUrls[ i++ ] = new File( iter.next().getFilePath() ).toURI().toURL();
+				url = new File( iter.next().getFilePath() ).toURI().toURL();
+				cUrls[ i++ ] = url;
 			} catch ( MalformedURLException e ) {
-				e.printStackTrace();
+				LOG.error( "Current url [" + url + "] is malformed. Error message is \r\n" + e.getMessage() );
 				System.exit( 0 );
 			}
 		}
@@ -67,10 +76,11 @@ public class MainRunnable implements Runnable {
 		try {
 			ComponentManager.getInstance().startAll();
 		} catch ( Exception e ) {
-			e.printStackTrace();
+			LOG.error( "Components started error. Error message is : \r\n", e.getMessage() );
 		}
 		final long endTime= System.currentTimeMillis();
-		LOG.config( ">The platform has been started. use time [" + ( endTime - beginTime ) + "ms]" );
+		if ( LOG.isDebugEnabled() ) {
+			LOG.debug( "The platform has been started. use time [" + ( endTime - beginTime ) + "ms]" );
+		}
 	}
-
 }

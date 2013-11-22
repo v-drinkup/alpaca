@@ -26,7 +26,7 @@ import net.vdrinkup.alpaca.component.ComponentResourceFilter;
  * Date Oct 28, 2013
  */
 public class StandAloneMain {
-	
+		
 	private static ExecutorService single = Executors.newSingleThreadExecutor( new ThreadFactory() {
 
 		@Override
@@ -63,9 +63,11 @@ public class StandAloneMain {
 		final URL[] commonUrlArray = new URL[ commonUrls.size() ];
 		commonUrls.toArray( commonUrlArray );
 		commonUrls.clear();
-		final ClassLoader commonsCl = new URLClassLoader( commonUrlArray, this.parent );
+		final ClassLoader commonsCL = new URLClassLoader( commonUrlArray, this.parent );
 		
-		single.execute( new MainRunnable( commonsCl ) );
+		Thread.currentThread().setContextClassLoader( commonsCL );
+		
+		single.execute( new MainRunnable( commonsCL ) );
 	}
 
 }

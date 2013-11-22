@@ -7,6 +7,7 @@
 package net.vdrinkup.alpaca.launcher;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -14,6 +15,7 @@ import java.net.URLClassLoader;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -24,20 +26,20 @@ import java.util.jar.JarFile;
  * Date Oct 29, 2013
  */
 public class Launcher {
-		
-	private String _install;
-
-	private ClassLoader classLoader;
-
-	private Class< ? > mainClazz;
+	
+	private static Launcher _instance;
+	
+	private String clazzName;
 	
 	public static void main( String... args ) {
-		final Launcher startup = new Launcher();
-		startup.start( args );
+		final Launcher launcher = new Launcher();
+		_instance = launcher;
+		_instance.run( args );
 	}
 	
-	public void start( String... args ) {
-		System.out.println( "=========================================" );
+	private void run( String... args ) {
+		System.out.println( "Ready to start the runtime..." );
+		System.out.println( "\t ---->Get install path..." );
 		final SecurityManager sm = System.getSecurityManager();
 		if ( sm != null ) {
 			sm.checkPermission( new RuntimePermission( "getProtectionDomain" ) );
@@ -47,30 +49,67 @@ public class Launcher {
 		try {
 			codeSource = new File( url.toURI() );
 		} catch ( URISyntaxException e ) {
-			e.printStackTrace();
-			System.exit( 0 );
+			error( e );
 		}
-		this._install = codeSource.getParentFile().getAbsolutePath();
-		System.out.println( ">The intall path is " + this._install );
-		final String libPath = this._install.concat( File.separator ).concat( "lib" ).concat( File.separator );
+		final String _install = codeSource.getParentFile().getAbsolutePath();
+		System.out.println( "\t ---->Current install path is [".concat( _install ).concat( "]" ) );
+		final String _conf = _install.concat( File.separator ).concat( "conf" );
+		final String _lib = _install.concat( File.separator ).concat( "lib" );
+		final String _logs = _install.concat( File.separator ).concat( "logs" );
+		System.out.println( "\t ---->Current conf path is [".concat( _conf ).concat( "]" ) );
+		System.out.println( "\t ---->Current lib path is [".concat( _lib ).concat( "lib" ).concat( "]" ) );
+		System.out.println( "\t ---->Current logs path is [".concat( _logs ).concat( "logs" ).concat( "]" ) );
+		System.out.println( "\t ---->Read start configuration..." );
+		final File startIni = new File( _install.concat( File.separator ).concat( "start.ini" ) );
+		Properties prop = null;
 		try {
-			final List< URL > urls = frt( new File( libPath ) );
-			if ( this.mainClazz == null ) {
-				System.err.println( "====================Error=====================" );
-				System.err.println( "No main class has been found.The system exist." );
-				System.err.println( "==============================================" );
-				System.exit( 0 );
-			}
-			final URL[] urlArray = new URL[ urls.size() ];
-			urls.toArray( urlArray );
-			urls.clear();
-			final Method main = this.mainClazz.getDeclaredMethod( "main", ClassLoader.class, URL[].class, 
-					String.class, String[].class );
-			invokeMain( mainClazz.newInstance(), main, urlArray, args );
+			prop = read( startIni );
+			clazzName = prop.getProperty( "main.class" );
 		} catch ( Exception e ) {
-			e.printStackTrace();
-			System.exit( 0 );
+			error( e );
 		}
+		List< URL > urls = null;
+		try {
+			urls = frt( new File( _lib ) );
+		} catch ( Exception e ) {
+			error( e );
+		}
+		final String commandPort = prop.getProperty( "command.port" );
+		final String mainClass = prop.getProperty( "main.class" );
+		
+	}
+	
+	/**
+	 * @param e
+	 */
+	private void error( Exception e ) {
+		System.err.println( e.getMessage() );
+		System.err.println( "Runtime start error, will be Interrupted." );
+		System.exit( 0 );
+	}
+	
+	private Properties read( File file ) throws Exception {
+		if ( file == null ) {
+			throw new IllegalArgumentException( "Read config error.The file is null." );
+		}
+		if ( ! file.exists() ) {
+			throw new IllegalArgumentException( "Read config error.The file not exist." );
+		}
+		if ( ! file.isFile() ) {
+			throw new IllegalArgumentException( "Read config error.The file is not a file" );
+		}
+		Properties properties = new Properties();
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream( file );
+			properties.load( fis );
+		} finally {
+			if ( fis != null ) {
+				fis.close();
+				fis = null;
+			}
+		}
+		return properties;
 	}
 
 	/**
@@ -139,7 +178,7 @@ public class Launcher {
 			if ( name.endsWith( ".class" )  ) {
 				name = entry.getName().replaceAll( "/", "." ).substring( 
 						0, entry.getName().lastIndexOf( "." ) );
-				if ( name.equals( "net.vdrinkup.alpaca.standalone.StandAloneMain" ) ) {
+				if ( name.equals(  ) ) {
 					this.classLoader = new URLClassLoader( new URL[] { file.toURI().toURL() }, 
 							ClassLoader.getSystemClassLoader() );
 					this.mainClazz = this.classLoader.loadClass( name );
